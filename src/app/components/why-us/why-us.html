@@ -1,0 +1,19 @@
+<section class="why-section section">
+  <div class="why-bg-decoration"></div>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">Why Choose Us</div>
+      <h2 class="section-title">Why 500+ Parents <span>Trust Us</span></h2>
+      <p class="section-sub">We go beyond academics to shape well-rounded, confident, happy individuals</p>
+    </div>
+    <div class="why-grid">
+      @for (item of items; track item.title; let i = $index) {
+        <div class="why-card" data-aos="zoom-in" [attr.data-aos-delay]="i*75">
+          <div class="why-icon-wrap">{{item.icon}}</div>
+          <h3>{{item.title}}</h3>
+          <p>{{item.desc}}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<section class="gallery-section section" id="gallery">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">Gallery</div>
+      <h2 class="section-title">Life at <span>Sunshine Kids</span></h2>
+      <p class="section-sub">Moments of joy, learning and growth captured at our vibrant school</p>
+    </div>
+    <div class="gallery-filters" data-aos="fade-up">
+      @for (f of filters; track f) {
+        <button class="gal-filter" [class.active]="activeFilter()===f" (click)="setFilter(f)">{{f | titlecase}}</button>
+      }
+    </div>
+    <div class="gallery-masonry" data-aos="fade-up" data-aos-delay="100">
+      @for (item of visibleItems(); track item.src) {
+        <a [href]="item.src" class="gal-item glightbox" [class.tall]="item.cls==='tall'" [class.wide]="item.cls==='wide'"
+           [attr.data-glightbox]="'title: '+item.label" data-gallery="sunshine-gallery">
+          <img [src]="item.thumb" [alt]="item.label" loading="lazy">
+          <div class="gal-overlay"><i class="fas fa-search-plus"></i><span>{{item.label}}</span></div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

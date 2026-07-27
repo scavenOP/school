@@ -1,0 +1,13 @@
+﻿<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      @for (s of stats; track s.label) {
+        <div class="stat-card" data-aos="fade-up">
+          <div class="stat-emoji">{{ s.emoji }}</div>
+          <span class="stat-num">{{ s.current() }}</span><span class="stat-plus">{{ s.suffix }}</span>
+          <div class="stat-lbl">{{ s.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<section class="programs-section section" id="programs">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">Our Programs</div>
+      <h2 class="section-title">Tailored Programs For <span>Every Age</span></h2>
+      <p class="section-sub">Carefully designed curriculum for each developmental stage of your child</p>
+    </div>
+    <div class="programs-grid">
+      @for (p of programs; track p.name) {
+        <div class="prog-card" [class.popular]="p.popular" data-aos="flip-left">
+          @if (p.popular) { <div class="popular-tag">&#11088; Most Popular</div> }
+          <div class="prog-top" [style.background]="p.gradient">
+            <div class="prog-emoji">{{p.emoji}}</div>
+            <div class="prog-age-tag">{{p.age}}</div>
+          </div>
+          <div class="prog-body">
+            <h3>{{p.name}}</h3>
+            <p>{{p.desc}}</p>
+            <ul class="prog-list">
+              @for (f of p.features; track f) {
+                <li><i class="fas fa-check-circle"></i> {{f}}</li>
+              }
+            </ul>
+            <div class="prog-fee"><span class="fee-amt">{{p.fee}}</span><span class="fee-per">/month</span></div>
+            <button class="btn-prog-enq" (click)="enquire(p)">Enquire Now <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

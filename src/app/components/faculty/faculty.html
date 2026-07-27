@@ -1,0 +1,28 @@
+<section class="faculty-section section" id="faculty">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">Our Faculty</div>
+      <h2 class="section-title">Meet Our <span>Amazing Teachers</span></h2>
+      <p class="section-sub">Passionate, certified educators dedicated to shaping young minds every day</p>
+    </div>
+    <div class="faculty-grid">
+      @for (m of members; track m.name; let i = $index) {
+        <div class="faculty-card" data-aos="fade-up" [attr.data-aos-delay]="i*100">
+          <div class="faculty-img-wrap">
+            <img [src]="m.img" [alt]="m.name">
+            <div class="faculty-social-fly">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a [href]="'mailto:'+m.name.toLowerCase().replace(' ','')+'@sunshinekids.edu.in'" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>{{m.name}}</h3>
+            <span class="faculty-role">{{m.role}}</span>
+            <span class="faculty-qual">{{m.qual}}</span>
+            <p>{{m.desc}}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

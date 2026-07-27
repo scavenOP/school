@@ -1,0 +1,33 @@
+<section class="admissions-section section" id="admissions">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">Admissions</div>
+      <h2 class="section-title">Simple <span>4-Step Admission</span> Process</h2>
+      <p class="section-sub">Getting your child started at Sunshine Kids is easy, quick and welcoming</p>
+    </div>
+    <div class="admission-steps-row">
+      @for (s of steps; track s.num; let i = $index; let last = $last) {
+        <div class="adm-step" data-aos="fade-up" [attr.data-aos-delay]="i*100">
+          <div class="adm-step-num">{{s.num}}</div>
+          <div class="adm-step-icon">{{s.icon}}</div>
+          <h3>{{s.title}}</h3>
+          <p>{{s.desc}}</p>
+        </div>
+        @if (!last) { <div class="adm-connector"><i class="fas fa-arrow-right"></i></div> }
+      }
+    </div>
+    <div class="admission-cta-banner" data-aos="zoom-in">
+      <div class="adm-cta-text">
+        <h3>&#127919; Admissions Open for 2025-26!</h3>
+        <p>Limited seats available. Give your child the best start in life. Do not miss this opportunity!</p>
+        <div class="adm-cta-btns">
+          <button class="btn-primary" (click)="scrollToContact()">Apply Now - Free!</button>
+          <a href="tel:+919876543210" class="btn-outline"><i class="fas fa-phone"></i> +91 98765 43210</a>
+        </div>
+      </div>
+      <div class="adm-cta-img">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500&q=85&auto=format&fit=crop" alt="Happy students">
+      </div>
+    </div>
+  </div>
+</section>

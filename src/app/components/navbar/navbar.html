@@ -1,0 +1,28 @@
+﻿<nav class="navbar" [class.scrolled]="scrolled()">
+  <div class="nav-container">
+    <a class="nav-logo" (click)="scrollTo('home')">
+      <div class="logo-icon-wrap">☀️</div>
+      <div class="logo-text-wrap">
+        <span class="logo-brand">Sunshine Kids</span>
+        <span class="logo-tag">Preschool • Kolkata</span>
+      </div>
+    </a>
+    <ul class="nav-menu" [class.open]="menuOpen()">
+      @for (link of navLinks; track link.href) {
+        <li>
+          <span class="nav-link" [class.active]="activeSection()===link.href" (click)="scrollTo(link.href)">
+            {{link.label}}
+          </span>
+        </li>
+      }
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+919876543210" class="nav-phone-link"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></a>
+      <button class="btn-enroll" (click)="scrollToEnroll()"><i class="fas fa-star"></i> Enroll Now</button>
+      <button class="hamburger" [class.active]="menuOpen()" (click)="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" [class.active]="menuOpen()" (click)="closeMenu()"></div>

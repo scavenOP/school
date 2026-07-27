@@ -1,0 +1,34 @@
+<section class="hero" id="home">
+  <canvas #heroCanvas id="heroCanvas"></canvas>
+  <div class="hero-floating-shapes">
+    @for (s of shapes; track s) { <div class="float-shape">{{s}}</div> }
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text-side">
+      <div class="hero-badge" data-aos="fade-down"><i class="fas fa-award"></i> #1 Rated Preschool in Kolkata 2024</div>
+      <h1 class="hero-heading">Where Little <span class="hero-highlight">Dreams</span> Grow Big!</h1>
+      <p class="hero-para">Nurturing curious minds at Kolkata most-loved early learning centre - <strong>Park Street, Kolkata</strong>.</p>
+      <div class="hero-typed-line">We offer: <span #typedEl class="typed-span"></span></div>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" (click)="scrollToSection('admissions')"><i class="fas fa-star"></i> Enrol Your Child</button>
+        <button class="btn-hero-secondary" (click)="scrollToSection('about')"><i class="fas fa-play-circle"></i> Discover More</button>
+      </div>
+      <div class="hero-trust-bar">
+        <div class="trust-pill"><i class="fas fa-users"></i> 500+ Families</div>
+        <div class="trust-pill"><i class="fas fa-star"></i> 4.9 / 5 Rating</div>
+        <div class="trust-pill"><i class="fas fa-shield-alt"></i> CBSE Affiliated</div>
+        <div class="trust-pill"><i class="fas fa-lock"></i> 24/7 CCTV</div>
+      </div>
+    </div>
+    <div class="hero-image-side" data-aos="zoom-in" data-aos-delay="200">
+      <div class="hero-img-blob"></div>
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=85&auto=format&fit=crop" alt="Happy child" class="hero-main-img">
+      </div>
+      <div class="hero-float-card card-left"><div class="fc-icon">&#127942;</div><div class="fc-text"><strong>15+ Years</strong><span>of Excellence</span></div></div>
+      <div class="hero-float-card card-right"><div class="fc-icon">&#128522;</div><div class="fc-text"><strong>100% Safe</strong><span>Fun Learning</span></div></div>
+      <div class="hero-float-card card-bottom"><div class="fc-icon">&#128105;</div><div class="fc-text"><strong>25+ Experts</strong><span>B.Ed Certified</span></div></div>
+    </div>
+  </div>
+  <div class="scroll-down-btn" (click)="scrollToSection('stats')"><span>Scroll Down</span><i class="fas fa-chevron-down"></i></div>
+</section>
