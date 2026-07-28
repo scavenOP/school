@@ -39,20 +39,33 @@ export class Hero implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef.nativeElement;
     const ctx = canvas.getContext('2d')!;
     const colours = ['255,213,102','255,107,53','123,47,190','6,182,212','255,255,255'];
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+
+    let logW = 0, logH = 0;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      logW = rect.width;
+      logH = rect.height;
+      canvas.width  = Math.floor(logW * dpr);
+      canvas.height = Math.floor(logH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
     resize();
     window.addEventListener('resize', resize);
+
     const makeParticle = (): Particle => ({
-      x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+      x: Math.random() * logW, y: Math.random() * logH,
       r: Math.random() * 2 + 0.5, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
       alpha: Math.random() * 0.5 + 0.2, colour: colours[Math.floor(Math.random() * colours.length)],
     });
     this.particles = Array.from({ length: 120 }, makeParticle);
+
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, logW, logH);
       this.particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) Object.assign(p, makeParticle());
+        if (p.x < 0 || p.x > logW || p.y < 0 || p.y > logH) Object.assign(p, makeParticle());
         ctx.save(); ctx.globalAlpha = p.alpha; ctx.fillStyle = `rgba(${p.colour},1)`;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
       });
@@ -60,8 +73,8 @@ export class Hero implements AfterViewInit, OnDestroy {
         for (let j = i + 1; j < this.particles.length; j++) {
           const dx = this.particles[i].x - this.particles[j].x, dy = this.particles[i].y - this.particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.save(); ctx.globalAlpha = (1 - dist / 100) * 0.12; ctx.strokeStyle = 'rgba(255,255,255,1)'; ctx.lineWidth = 0.5;
+          if (dist < 80) {
+            ctx.save(); ctx.globalAlpha = (1 - dist / 80) * 0.07; ctx.strokeStyle = 'rgba(255,255,255,1)'; ctx.lineWidth = 0.4;
             ctx.beginPath(); ctx.moveTo(this.particles[i].x, this.particles[i].y); ctx.lineTo(this.particles[j].x, this.particles[j].y); ctx.stroke(); ctx.restore();
           }
         }
