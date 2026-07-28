@@ -218,7 +218,7 @@ input, textarea, select { font-family: var(--font-body); outline: none; border: 
 .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; position: relative; z-index: 1; }
 .stat-card { text-align: center; padding: 32px 16px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); cursor: default; }
 .stat-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
-.stat-emoji { font-size: 36px; margin-bottom: 12px; }
+.stat-emoji { font-size: 18px; margin-bottom: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.5px; text-transform: capitalize; }
 .stat-num { font-family: var(--font-head); font-size: 42px; color: var(--accent); line-height: 1; display: inline; }
 .stat-plus { font-family: var(--font-head); font-size: 28px; color: var(--primary); }
 .stat-lbl { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; font-weight: 500; }
