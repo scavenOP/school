@@ -69,16 +69,6 @@ export class Hero implements AfterViewInit, OnDestroy {
         ctx.save(); ctx.globalAlpha = p.alpha; ctx.fillStyle = `rgba(${p.colour},1)`;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
       });
-      for (let i = 0; i < this.particles.length; i++) {
-        for (let j = i + 1; j < this.particles.length; j++) {
-          const dx = this.particles[i].x - this.particles[j].x, dy = this.particles[i].y - this.particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 80) {
-            ctx.save(); ctx.globalAlpha = (1 - dist / 80) * 0.07; ctx.strokeStyle = 'rgba(255,255,255,1)'; ctx.lineWidth = 0.4;
-            ctx.beginPath(); ctx.moveTo(this.particles[i].x, this.particles[i].y); ctx.lineTo(this.particles[j].x, this.particles[j].y); ctx.stroke(); ctx.restore();
-          }
-        }
-      }
       this.animId = requestAnimationFrame(draw);
     };
     draw();
