@@ -15,6 +15,7 @@ import { Admissions } from './components/admissions/admissions';
 import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
 import { FloatingElements } from './components/floating-elements/floating-elements';
+import { Chatbot } from './components/chatbot/chatbot';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ import { FloatingElements } from './components/floating-elements/floating-elemen
   imports: [
     Preloader, Navbar, Hero, Ticker, Stats, About, Programs,
     WhyUs, Gallery, Testimonials, Faculty, Admissions,
-    Contact, Footer, FloatingElements
+    Contact, Footer, FloatingElements, Chatbot
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

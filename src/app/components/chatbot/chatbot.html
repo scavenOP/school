@@ -1,0 +1,126 @@
+<!-- ========== CHATBOT WIDGET ========== -->
+
+<!-- Floating Trigger Button -->
+<div class="chatbot-wrapper">
+
+  <!-- Notification Badge -->
+  <div class="chatbot-badge" [class.hide]="isOpen()">1</div>
+
+  <!-- Floating Button -->
+  <button
+    class="chatbot-fab"
+    [class.open]="isOpen()"
+    (click)="toggleChat()"
+    aria-label="Open chat assistant"
+    title="Chat with Sunny 🌟"
+  >
+    <span class="fab-icon fab-chat"><i class="fas fa-comment-dots"></i></span>
+    <span class="fab-icon fab-close"><i class="fas fa-times"></i></span>
+    <div class="fab-ring"></div>
+  </button>
+
+  <!-- Tooltip -->
+  <div class="chatbot-tooltip" [class.hide]="isOpen()">
+    Chat with <strong>Sunny!</strong> 🌟
+  </div>
+
+  <!-- Chat Popup Window -->
+  <div class="chatbot-popup" [class.visible]="isOpen()" role="dialog" aria-label="Chat with Sunny">
+
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">
+        <div class="avatar-img">☀️</div>
+        <div class="avatar-status"></div>
+      </div>
+      <div class="chat-header-info">
+        <h4>Sunny</h4>
+        <span class="online-status">
+          <span class="dot"></span>
+          Always here to help
+        </span>
+      </div>
+      <div class="chat-header-actions">
+        <button class="header-btn" (click)="toggleChat()" aria-label="Close chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- School Brand Bar -->
+    <div class="chat-brand-bar">
+      <i class="fas fa-school"></i>
+      Sunshine Kids Preschool &nbsp;·&nbsp; Kolkata
+    </div>
+
+    <!-- Messages Area -->
+    <div class="chat-messages" #messagesContainer>
+
+      <!-- Bot / User Messages -->
+      @for (msg of messages(); track msg.id) {
+        <div class="msg-row" [class.user-row]="msg.from === 'user'">
+          @if (msg.from === 'bot') {
+            <div class="msg-avatar-bot">☀️</div>
+          }
+          <div class="msg-bubble" [class.bot-bubble]="msg.from === 'bot'" [class.user-bubble]="msg.from === 'user'">
+            <p [innerHTML]="msg.text"></p>
+            <span class="msg-time">{{ msg.time }}</span>
+
+            <!-- Quick option buttons -->
+            @if (msg.options && msg.from === 'bot') {
+              <div class="quick-options">
+                @for (opt of msg.options; track opt.value) {
+                  <button class="quick-btn" (click)="onOptionClick(opt)">
+                    <span class="qb-icon">{{ opt.icon }}</span>
+                    {{ opt.label }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Typing Indicator -->
+      @if (isTyping()) {
+        <div class="msg-row">
+          <div class="msg-avatar-bot">☀️</div>
+          <div class="msg-bubble bot-bubble typing-bubble">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    <!-- Input Area -->
+    <div class="chat-input-area">
+      <div class="chat-input-wrap">
+        <input
+          type="text"
+          class="chat-input"
+          placeholder="Type your question..."
+          [value]="userInput()"
+          (input)="userInput.set($any($event.target).value)"
+          (keydown)="onKeydown($event)"
+          maxlength="300"
+          autocomplete="off"
+        />
+        <button
+          class="chat-send-btn"
+          (click)="sendMessage()"
+          [disabled]="!userInput().trim()"
+          aria-label="Send message"
+        >
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="chat-footer-note">
+        <i class="fas fa-lock"></i> Private & Secure · Sunshine Kids Preschool
+      </div>
+    </div>
+
+  </div>
+</div>

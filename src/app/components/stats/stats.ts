@@ -14,13 +14,14 @@ export class Stats implements AfterViewInit {
   ngAfterViewInit(): void {
     const els = document.querySelectorAll('.stat-num');
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e, idx) => {
+      entries.forEach((e) => {
         if (e.isIntersecting && !(e.target as HTMLElement).dataset['animated']) {
           (e.target as HTMLElement).dataset['animated'] = '1';
-          this.animateCount(idx);
+          const idx = Array.from(els).indexOf(e.target as Element);
+          if (idx !== -1) this.animateCount(idx);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.1 });
     els.forEach(el => obs.observe(el));
   }
   animateCount(idx: number): void {
